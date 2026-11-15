@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ramin Rajaei</title>
+  <meta name="description" content="Ramin Rajaei, Ph.D. Hardware engineer working on FPGA design, verification, and AI for chip design.">
+  <meta property="og:title" content="Ramin Rajaei">
+  <meta property="og:description" content="Hardware engineer working on FPGA design, verification, and AI for chip design.">
+  <meta property="og:url" content="https://iiamramiin.github.io/">
+  <meta property="og:type" content="profile">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f6b5c'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='white' text-anchor='middle'%3ERR%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+  <link rel="stylesheet" href="style_v1.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">Ramin Rajaei</a>
+      <nav>
+        <a href="#now">Now</a>
+        <a href="#interests">Interests</a>
+        <a href="#rtlgym">rtlgym</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#background">Background</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap layout" id="top">
+    <aside class="profile">
+      <img class="photo" src="photo.jpg" alt="Ramin Rajaei" onerror="this.style.display='none';document.getElementById('initials').style.display='flex'">
+      <div id="initials" class="initials">RR</div>
+      <h1>Ramin Rajaei</h1>
+      <p class="role">Hardware engineer &amp; researcher<br>Ph.D., Electrical Engineering</p>
+      <ul class="links">
+        <li><span class="k">based</span>San Jose, CA</li>
+        <li><span class="k">work</span>Cisco Systems</li>
+        <li><span class="k">code</span><a href="https://github.com/iiamramiin">GitHub</a></li>
+        <li><span class="k">papers</span><a href="https://scholar.google.com/citations?user=lL4svjsAAAAJ">Google Scholar</a></li>
+      </ul>
+    </aside>
+
+    <main>
+      <section class="intro">
+        <p class="lead">I design digital hardware, and lately I study how AI can help design it.</p>
+        <p>I'm a Senior FPGA Design Engineer at Cisco, with more than ten years of experience turning specs into working hardware. I care about hardware that is correct, observable, and reliable, and about the tools that help engineers get there faster.</p>
+      </section>
+
+      <section id="now">
+        <h2>What I'm working on now</h2>
+        <div class="now-grid">
+          <div class="now-item">
+            <h3>FPGAs for networking hardware</h3>
+            <p>At Cisco I own several FPGA and CPLD designs for networking and data-center products, from architecture and RTL through verification, timing closure, and lab bring-up. I also build reusable SystemVerilog IP and the flows that take designs from code to hardware.</p>
+          </div>
+          <div class="now-item">
+            <h3>Making hardware easier to debug</h3>
+            <p>I'm interested in hardware that explains itself when something goes wrong. That includes debug and observability features built into the design, and machine learning that spots faults early from hardware telemetry.</p>
+          </div>
+          <div class="now-item">
+            <h3>Testing how well models write RTL</h3>
+            <p>On my own time I build <a href="#rtlgym">rtlgym</a>, an environment where language models write SystemVerilog and get graded the way a hardware team would grade it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="interests">
+        <h2>Interests</h2>
+        <p><strong>AI for chip design.</strong> Language models can write Verilog that compiles and passes a few tests, yet is still wrong. I'm interested in how we measure that gap honestly. That means hidden tests, formal equivalence, synthesis results, and graders that can't be gamed. I'm also interested in how tool feedback and reinforcement learning help close the gap.</p>
+        <p><strong>Verification and correctness.</strong> Most of the risk in hardware sits in what nobody tested. I like methods that cover more than the testbench author imagined: assertions, coverage, and formal checks against a reference.</p>
+        <p><strong>Reliable hardware.</strong> My Ph.D. was on soft errors in nanoscale CMOS, and I still care about how hardware fails, and how to detect it, tolerate it, and debug it in the field.</p>
+        <p><strong>Hardware for machine learning.</strong> As a researcher I worked on in-memory computing, ferroelectric embedded memory, and analog hardware for neural networks. I've also run fixed-point neural-network models on FPGAs in real products.</p>
+      </section>
+
+      <section id="rtlgym">
+        <h2>rtlgym</h2>
+        <p>An open-source environment for evaluating language models that write hardware, built so it can also serve as a reinforcement-learning environment. A model gets a spec, writes a SystemVerilog design, and can revise it after seeing the tools' feedback. The 12 tasks range from an ALU and a FIFO to a 5-port network-on-chip router and an AXI4-Lite slave.</p>
+        <div class="pipe" role="group" aria-label="Grading steps: compile, then lint, hidden tests, formal equivalence, and synthesis in parallel">
+          <span>compile</span><i></i><div class="par"><span>lint</span><span>hidden tests</span><span>formal equivalence</span><span>synthesis</span></div>
+        </div>
+        <p>Each attempt is compiled first, then checked four ways in parallel, usually in one to two seconds. A design is accepted only if it passes all hidden tests, is formally equivalent to the reference, and synthesizes without latches. The grader also rejects common reward hacks, like ending the simulation early or reading files.</p>
+        <div class="result">
+          <div class="figure"><span class="num">14<small>/16</small></span><span class="cap">failed first attempts fixed with tool feedback</span></div>
+          <div class="figure"><span class="num">7<small>/16</small></span><span class="cap">fixed by simply retrying</span></div>
+          <p class="result-note">From 120 paired episodes with Claude Sonnet 5.5 and Haiku 5.5. In every case where the two approaches disagreed, feedback won, mostly on the router.</p>
+        </div>
+        <p><a class="button" href="https://github.com/iiamramiin/rtlgym">View on GitHub</a></p>
+      </section>
+
+      <section id="expertise">
+        <h2>Expertise</h2>
+        <div class="exp-grid">
+          <div class="exp"><h3>RTL design &amp; architecture</h3><p>SystemVerilog, Verilog, and VHDL. Parameterized IP, clock-domain crossing, pipelining, interface and PCIe integration.</p></div>
+          <div class="exp"><h3>Verification</h3><p>UVM, constrained-random tests, assertions, functional coverage, formal equivalence checking, and RTL and gate-level debug.</p></div>
+          <div class="exp"><h3>AI for chip design</h3><p>Evaluation and RL environments for LLM-written RTL: hidden cocotb testbenches, formal equivalence with Yosys, synthesis-based scoring, reward-hack detection, and paired experiments with exact statistical tests. Also LLM-assisted design and verification flows.</p></div>
+          <div class="exp"><h3>Implementation &amp; timing</h3><p>Synthesis, place-and-route, constraints, floorplanning, and retiming on AMD/Xilinx, Intel, Lattice, and Microchip devices.</p></div>
+          <div class="exp"><h3>Silicon validation &amp; high-speed links</h3><p>Post-silicon characterization of multi-GSPS RF transceiver ASICs, JESD204B/C, HBM, IBERT, and eye-margin debug.</p></div>
+          <div class="exp"><h3>Machine learning on hardware</h3><p>Fault-detection models on sensor telemetry with scikit-learn, and neural-network inference on FPGAs with TensorFlow and Vitis AI.</p></div>
+          <div class="exp"><h3>Reliable design</h3><p>Soft-error mitigation, radiation-hardened processors, configuration scrubbing, and fault logging in the field.</p></div>
+          <div class="exp"><h3>Design automation</h3><p>Python, Tcl, and Bash flows for synthesis, place-and-route, and regression on Linux, with Git and CI on GitHub Actions.</p></div>
+        </div>
+      </section>
+
+      <section id="background">
+        <h2>Background</h2>
+        <p>I started out building onboard computers for a student satellite at Sharif University of Technology (SharifSat), including a radiation-hardened LEON3 processor. I earned my Ph.D. in Electrical Engineering there as well. I then joined the faculty of Shahid Beheshti University, where I directed the High-Performance Computing Lab, and later did research at the University of Notre Dame on emerging-device circuits for memory, security, and machine learning. In 2021 I moved to industry, first building FPGA platforms to validate RF transceiver ASICs at Jariet Technologies. Since 2024 I have been at Cisco, designing the FPGAs and CPLDs inside its networking and data-center products. The role brings together everything that came before: RTL design, verification, and making hardware work reliably once it ships.</p>
+        <p>Along the way I published 60+ papers (1,550+ citations) and taught 14 courses including ASIC/FPGA design.</p>
+      </section>
+
+      <footer>© 2026 Ramin Rajaei</footer>
+    </main>
+  </div>
+</body>
+</html>
