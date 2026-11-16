@@ -78,15 +78,15 @@
 
       <section id="rtlgym">
         <h2>rtlgym</h2>
-        <p>An open-source environment for evaluating language models that write hardware, built so it can also serve as a reinforcement-learning environment. A model gets a spec, writes a SystemVerilog design, and can revise it after seeing the tools' feedback. The 12 tasks range from an ALU and a FIFO to a 5-port network-on-chip router and an AXI4-Lite slave.</p>
+        <p>An open-source environment for evaluating language models that write hardware, built so it can also serve as a reinforcement-learning environment. A model gets a spec, writes a SystemVerilog design, and can revise it after seeing the tools' feedback. The 18 tasks range from an ALU and a FIFO to a 5-port network-on-chip router, an AXI4 burst slave, and a dual-clock FIFO.</p>
         <div class="pipe" role="group" aria-label="Grading steps: compile, then lint, hidden tests, formal equivalence, and synthesis in parallel">
           <span>compile</span><i></i><div class="par"><span>lint</span><span>hidden tests</span><span>formal equivalence</span><span>synthesis</span></div>
         </div>
         <p>Each attempt is compiled first, then checked four ways in parallel, usually in one to two seconds. A design is accepted only if it passes all hidden tests, is formally equivalent to the reference, and synthesizes without latches. The grader also rejects common reward hacks, like ending the simulation early or reading files.</p>
         <div class="result">
-          <div class="figure"><span class="num">14<small>/16</small></span><span class="cap">failed first attempts fixed with tool feedback</span></div>
-          <div class="figure"><span class="num">7<small>/16</small></span><span class="cap">fixed by simply retrying</span></div>
-          <p class="result-note">From 120 paired episodes with Claude Sonnet 5.5 and Haiku 5.5. In every case where the two approaches disagreed, feedback won, mostly on the router.</p>
+          <div class="figure"><span class="num">17<small>/19</small></span><span class="cap">failed first attempts fixed with tool feedback</span></div>
+          <div class="figure"><span class="num">8<small>/19</small></span><span class="cap">fixed by simply retrying</span></div>
+          <p class="result-note">From 162 paired episodes with Claude Sonnet 5.5 and Haiku 5.5, November 2026. Feedback won 10 of the 11 cases where the two approaches disagreed, all on the router. The first runs also exposed toolchain problems, such as a parser that rejected valid code, which I fixed before trusting the numbers.</p>
         </div>
         <p><a class="button" href="https://github.com/iiamramiin/rtlgym">View on GitHub</a></p>
       </section>
